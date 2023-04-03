@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public final class Mat4
 {
-  final float[] data;
+  public final float[] data;
 
   public Mat4()
   {
