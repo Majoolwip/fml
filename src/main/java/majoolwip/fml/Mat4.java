@@ -10,8 +10,8 @@ public final class Mat4
   {
     data = new float[16];
     data[0] = 1f;
-    data[4] = 1f;
-    data[9] = 1f;
+    data[5] = 1f;
+    data[10] = 1f;
     data[15] = 1f;
   }
 

@@ -26,7 +26,7 @@ public final class FML
   /**
    * Calculates the length of the given three-dimensional vector.
    *
-   * @param v The vector's whose length will be calculated.
+   * @param v The vectors whose length will be calculated.
    * @return The length of the vector.
    */
   public static float length(final Vec3 v)
@@ -37,7 +37,7 @@ public final class FML
   /**
    * Calculates the squared length of the given three-dimensional vector.
    *
-   * @param v The vector's whose squared length will be calculated.
+   * @param v The vectors whose squared length will be calculated.
    * @return The squared length of the vector.
    */
   public static float lengthSq(final Vec3 v)
@@ -48,7 +48,7 @@ public final class FML
   /**
    * Calculates the length of the given two-dimensional vector.
    *
-   * @param v The vector's whose length will be calculated.
+   * @param v The vectors whose length will be calculated.
    * @return The length of the vector.
    */
   public static float length(final Vec2 v)
@@ -59,7 +59,7 @@ public final class FML
   /**
    * Calculates the squared length of the given two-dimensional vector.
    *
-   * @param v The vector's whose squared length will be calculated.
+   * @param v The vectors whose squared length will be calculated.
    * @return The squared length of the vector.
    */
   public static float lengthSq(final Vec2 v)
@@ -278,9 +278,8 @@ public final class FML
     {
       for (int j = 0; j < 4; j++)
       {
-        out.data[i + j * 4] =
-            a.data[i] * b.data[j * 4] + a.data[i + 4] * b.data[1 + j * 4] + a.data[i + 8] * b.data[2 + j * 4] +
-                a.data[i + 12] * b.data[3 + j * 4];
+        out.data[i + j * 4] = a.data[i] * b.data[j * 4] + a.data[i + 4] * b.data[1 + j * 4] +
+            a.data[i + 8] * b.data[2 + j * 4] + a.data[i + 12] * b.data[3 + j * 4];
       }
     }
   }
@@ -335,9 +334,9 @@ public final class FML
   public static Mat4 createTranslationMatrix(final float x, final float y, final float z)
   {
     final Mat4 result = new Mat4();
-    result.data[3] = x;
-    result.data[7] = y;
-    result.data[11] = z;
+    result.data[12] = x;
+    result.data[13] = y;
+    result.data[14] = z;
     return result;
   }
 
@@ -353,8 +352,8 @@ public final class FML
   {
     final Mat4 result = new Mat4();
     result.data[0] = x;
-    result.data[4] = y;
-    result.data[9] = z;
+    result.data[5] = y;
+    result.data[10] = z;
     return result;
   }
 
@@ -395,9 +394,10 @@ public final class FML
     float zRange = zNear - zFar;
     result.data[0] = 1.0f / (tanHalfFov * aspectRatio);
     result.data[5] = 1.0f / tanHalfFov;
-    result.data[10] = (-zNear - zFar) / zRange;
-    result.data[11] = 1.0f;
+    result.data[10] = (zNear + zFar) / zRange;
+    result.data[11] = -1.0f;
     result.data[14] = 2.0f * zFar * zNear / zRange;
+    result.data[15] = 0.0f;
     return result;
   }
 }
